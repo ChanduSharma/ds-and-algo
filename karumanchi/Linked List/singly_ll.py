@@ -85,7 +85,19 @@ class LinkedList:
             self.head = self.head.get_next()
             self.length -= 1
             del temp
+    def del_at_end(self):
+        if self.length == 0:
+            print("List is empty")
+        else:
+            previous_ptr = self.head
+            current_ptr = self.head
+            while current_ptr.get_next() != None:
+                previous_ptr = current_ptr
+                current_ptr = current_ptr.get_next()
             
+            previous_ptr.set_next(None)
+            self.length -= 1
+    
     def traverse(self):
         current = self.head
         while current:
@@ -108,6 +120,9 @@ singly_linked_list.insert_at_pos(86,9)
 
 singly_linked_list.traverse()  
 singly_linked_list.del_at_beg()
-print("After deleting node")
+print("After deleting beginnings node")
+singly_linked_list.traverse()
+print("After deleting last node")
+singly_linked_list.del_at_end()
 singly_linked_list.traverse()
     
