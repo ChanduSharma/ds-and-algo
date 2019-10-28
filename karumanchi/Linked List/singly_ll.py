@@ -97,7 +97,70 @@ class LinkedList:
             
             previous_ptr.set_next(None)
             self.length -= 1
-    
+        
+    def del_with_node(self,node):
+        if self.length == 0:
+            raise ValueError("List is empty")
+        else:
+            current = self.head
+            previous = None
+            found = False
+            while not found:
+                if current == node:
+                    found = True
+                elif current is None:
+                    raise ValueError("Node not found in the list")
+                else:
+                    previous = current
+                    current = current.get_next()
+                    
+            if previous is None:
+                # Means the data is in the first node.
+                self.head = current.get_next()
+                # No need to delete the node as it will be added for garbage collection
+            else:
+                previous.set_next(current.get_next())
+            self.length -= 1
+            
+    def del_with_value(self,value):
+        if self.length == 0:
+            raise ValueError("List is empty")
+        else:
+            current = self.head
+            previous = self.head
+            while (current.get_next() != None) and (current.get_data() !=  value):
+                previous = current
+                current = current.get_next()
+            
+            if current.get_data() == value:
+                previous.set_next(current.get_next())
+                self.length -= 1
+            else:
+                raise ValueError('Value not found in the Linked list.')
+                    
+    def del_at_pos(self,pos):
+        if self.length == 0:
+            raise ValueError('The list is empty')
+        
+        if pos > self.length or pos < 0:
+            raise ValueError('Position does not exist in Linked List.')
+        else:
+            if pos == 0:
+                self.head = self.head.get_next()
+            else:
+                count = 0
+                current = self.head
+                previous = None
+                while (current.get_next() != None) or count < pos:
+                    count += 1
+                    if count == pos:
+                        previous.set_next(current.get_next())
+                        self.length -= 1
+                        break
+                    else:
+                        previous = current
+                        current = current.get_next()
+        
     def traverse(self):
         current = self.head
         while current:
@@ -125,4 +188,10 @@ singly_linked_list.traverse()
 print("After deleting last node")
 singly_linked_list.del_at_end()
 singly_linked_list.traverse()
-    
+
+print("After deleting 85")
+singly_linked_list.del_with_value(85)
+singly_linked_list.traverse()
+print("After deleting last node.")
+singly_linked_list.del_at_pos(8)
+singly_linked_list.traverse()
