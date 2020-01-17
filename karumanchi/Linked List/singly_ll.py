@@ -127,6 +127,33 @@ class SinglyLinkedList:
             del temp
             temp = self.head
 
+    def insertion_sort(self):
+
+        if not self.head or not self.head.get_next():
+            return
+
+        p = self.head
+
+        while p.get_next():
+            q = p.get_next()
+            r = q.get_next()
+            if q.get_data() < p.get_data():
+                temp = self.head
+                if q.get_data() < self.head.get_data():
+                    q.set_next(self.head)
+                    self.head = q
+                else:
+                    while q.get_data() > temp.get_next().get_data():
+                        temp = temp.get_next()
+
+                    q.set_next(temp.get_next())
+                    temp.set_next(q)
+                p.set_next(r)
+            else:
+                p = p.get_next()
+
+
+   
     def display(self):
         temp = self.head
         while temp:
@@ -134,13 +161,13 @@ class SinglyLinkedList:
             temp = temp.get_next()
 
 x = SinglyLinkedList()
+x.insert_at_beg(1)
+x.insert_at_beg(2)
+x.insert_at_beg(3)
+x.insert_at_end(2)
 x.insert_at_beg(4)
-# x.insert_at_beg(3)
-# x.insert_at_end(6)
-# x.insert_at(1,1)
-# x.insert_at(2,2)
-# x.insert_at(7,10)
 
-x.del_at(4)
+# x.del_at(4)
 print("Printing list")
+x.insertion_sort()
 x.display()
