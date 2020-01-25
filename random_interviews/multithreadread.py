@@ -36,12 +36,12 @@ class Loader(object):
 			File line generator based on the filename
 			"""
 			for line in open(filename,'r'):
-				yield line
+				self.s_print(line)
 
 		def s_print(self,*args):
 			with self.s_print_lock:
 				time.sleep(0.1)
-				print(next(*args))
+				print(*args)
 
 		def run_threads(self):
 			for generators in self.filesGenerator:
