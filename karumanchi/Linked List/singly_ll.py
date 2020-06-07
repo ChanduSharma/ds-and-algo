@@ -26,10 +26,14 @@ class SinglyLinkedList:
         self.head = None
 
     def insert_at_beg(self, data):
-        new_node = SinglyNode()
-        new_node.set_data(data)
-        new_node.set_next(self.head)
-        self.head = new_node
+        try:
+            new_node = SinglyNode()
+            SinglyNode.set_data(new_node, data)
+            new_node.set_next(self.head)
+            self.head = new_node
+        except MemoryError as error:
+            print("Could not allocate memory for the node."+ error) 
+        
 
     def insert_at_end(self,data):
         new_node = SinglyNode()
