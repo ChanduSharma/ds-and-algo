@@ -59,6 +59,7 @@ class SinglyList:
 
             current = self.head
             while current and (pos - 1) > 0:
+                pos = pos - 1
                 current = current.get_next()
             
             if not current:
