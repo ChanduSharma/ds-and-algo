@@ -20,3 +20,10 @@ console.log(x, y);
 console.log("default values while destructuring");
 const [number1 = 1 , number2 = 2 , number3 = 50] = [1, 2];
 console.log(number1, number2, number3);
+
+// to swap variables reference
+console.log("swappin variables");
+let [a, b] = [2, 3];
+console.log(`Values before swap a=${a} and b=${b}`);
+[a, b] = [b, a];
+console.log(`Values after swap a=${a} and b=${b}`);
